@@ -6,6 +6,7 @@ public class TripPlayer : MonoBehaviour
 {
     public bool isLocal;
     public Vector2 startingPos;
+    public string hinput, vinput; //string for horizontal and vertical input
 
     // Start is called before the first frame update
     void Start()
@@ -21,8 +22,8 @@ public class TripPlayer : MonoBehaviour
         if (isLocal)
         {
             
-            hSpeed = Input.GetAxis("Horizontal") * 10;
-            vSpeed = Input.GetAxis("Vertical") * 10;
+            hSpeed = Input.GetAxis(hinput) * 10;
+            vSpeed = Input.GetAxis(vinput) * 10;
             
         }
 

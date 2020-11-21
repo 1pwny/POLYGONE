@@ -52,5 +52,8 @@ public class GameManager : MonoBehaviour
         return Player2;
     }
 
-
+    public bool isLocal()
+    {
+        return gameType == GameType.LOCAL;
+    }
 }

@@ -1426,8 +1426,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2d83b4c7a4360e47966b2d4d43961eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocal: 0
+  isLocal: 1
   startingPos: {x: 5, y: -3}
+  hinput: Horizontal 2
+  vinput: Vertical 2
 --- !u!212 &1862429127
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1831,6 +1833,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isLocal: 1
   startingPos: {x: -5, y: -3}
+  hinput: Horizontal
+  vinput: Vertical
 --- !u!50 &2028793898
 Rigidbody2D:
   serializedVersion: 4
