@@ -6,6 +6,7 @@ public class Drawing : MonoBehaviour
 {
     public GameObject Selected;
     public GameObject parent;
+    public AudioSource ClickSound;
     //public Texture2D Paper;
     // Start is called before the first frame update
     void Start()
@@ -32,6 +33,7 @@ public class Drawing : MonoBehaviour
     public void ChangePenColor(GameObject selected)
     {
         Selected = selected;
+        ClickSound.Play();
     }
 
     IEnumerator DeleteObject(float f, GameObject obj)
