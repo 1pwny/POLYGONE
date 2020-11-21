@@ -13,10 +13,17 @@ public class MenuManager : MonoBehaviour
     public Animator camAnim;
     public GameObject CharacterSelectButtons;
     public Image[] CharacterButtons;
+    public GameObject[] colorCharacters;
     private bool Player1Selected = false;
     private Image player1SelectedImage;
     private bool Player2Selected = false;
     private Image player2SelectedImage;
+    private enum Colors
+    {
+        blue, red, purple, black
+    }
+    private Colors player1Color;
+    private Colors player2Color;
 
     private Color baseColor = Color.black;
     private Color hoverColor = Color.red;
@@ -28,6 +35,8 @@ public class MenuManager : MonoBehaviour
     {
         ClickSound = GetComponent<AudioSource>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        player1Color = Colors.black;
+        player2Color = Colors.black;
     }
 
     #region Buttons
@@ -161,7 +170,142 @@ public class MenuManager : MonoBehaviour
     {
         if(Player1Selected && Player2Selected)
         {
+            if(player1Color == Colors.blue)
+            {
+                if(player1SelectedImage == CharacterButtons[0])
+                {
+                    gameManager.setPlayer1(colorCharacters[0]);
+                }
+                if (player1SelectedImage == CharacterButtons[1])
+                {
+                    gameManager.setPlayer1(colorCharacters[6]);
+                }
+                if (player1SelectedImage == CharacterButtons[2])
+                {
+                    gameManager.setPlayer1(colorCharacters[3]);
+                }
+            }
+            if (player1Color == Colors.purple)
+            {
+                if (player1SelectedImage == CharacterButtons[0])
+                {
+                    gameManager.setPlayer1(colorCharacters[1]);
+                }
+                if (player1SelectedImage == CharacterButtons[1])
+                {
+                    gameManager.setPlayer1(colorCharacters[7]);
+                }
+                if (player1SelectedImage == CharacterButtons[2])
+                {
+                    gameManager.setPlayer1(colorCharacters[4]);
+                }
+            }
+            if (player1Color == Colors.red)
+            {
+                if (player1SelectedImage == CharacterButtons[0])
+                {
+                    gameManager.setPlayer1(colorCharacters[2]);
+                }
+                if (player1SelectedImage == CharacterButtons[1])
+                {
+                    gameManager.setPlayer1(colorCharacters[8]);
+                }
+                if (player1SelectedImage == CharacterButtons[2])
+                {
+                    gameManager.setPlayer1(colorCharacters[5]);
+                }
+            }
+            if (player2Color == Colors.blue)
+            {
+                if (player2SelectedImage == CharacterButtons[3])
+                {
+                    gameManager.setPlayer2(colorCharacters[0]);
+                }
+                if (player2SelectedImage == CharacterButtons[4])
+                {
+                    gameManager.setPlayer2(colorCharacters[6]);
+                }
+                if (player2SelectedImage == CharacterButtons[5])
+                {
+                    gameManager.setPlayer2(colorCharacters[3]);
+                }
+            }
+            if (player2Color == Colors.purple)
+            {
+                if (player2SelectedImage == CharacterButtons[3])
+                {
+                    gameManager.setPlayer2(colorCharacters[1]);
+                }
+                if (player2SelectedImage == CharacterButtons[4])
+                {
+                    gameManager.setPlayer2(colorCharacters[7]);
+                }
+                if (player2SelectedImage == CharacterButtons[5])
+                {
+                    gameManager.setPlayer2(colorCharacters[4]);
+                }
+            }
+            if (player2Color == Colors.red)
+            {
+                if (player2SelectedImage == CharacterButtons[3])
+                {
+                    gameManager.setPlayer2(colorCharacters[2]);
+                }
+                if (player2SelectedImage == CharacterButtons[4])
+                {
+                    gameManager.setPlayer2(colorCharacters[8]);
+                }
+                if (player2SelectedImage == CharacterButtons[5])
+                {
+                    gameManager.setPlayer2(colorCharacters[5]);
+                }
+            }
+
             SceneManager.LoadScene("Trip");
+        }
+    }
+    public void Black(int player)
+    {
+        if(player == 1)
+        {
+            player1Color = Colors.black;
+        }
+        else
+        {
+            player2Color = Colors.black;
+        }
+    }
+    public void purple(int player)
+    {
+        if (player == 1)
+        {
+            player1Color = Colors.purple;
+        }
+        else
+        {
+            player2Color = Colors.purple;
+        }
+    }
+    public void red(int player)
+    {
+        if (player == 1)
+        {
+            player1Color = Colors.red;
+        }
+        else
+        {
+            player2Color = Colors.red;
+        }
+    }
+    public void blue(int player)
+    {
+        if (player == 1)
+        {
+            player1Color = Colors.blue;
+        }
+        else
+        {
+            player2Color = Colors.blue;
         }
     }
 
