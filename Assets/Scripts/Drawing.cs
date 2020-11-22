@@ -7,6 +7,7 @@ public class Drawing : MonoBehaviour
     public GameObject Selected;
     public GameObject parent;
     public AudioSource ClickSound;
+    private bool CanDraw = true;
     //public Texture2D Paper;
     // Start is called before the first frame update
     void Start()
@@ -18,7 +19,7 @@ public class Drawing : MonoBehaviour
     void Update()
     {
         
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0)&&CanDraw)
         {
             Vector2 mousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y);
             Vector2 wordPos;
@@ -34,6 +35,11 @@ public class Drawing : MonoBehaviour
     {
         Selected = selected;
         ClickSound.Play();
+    }
+
+    public void swapCanDraw()
+    {
+        CanDraw = !CanDraw;
     }
 
     IEnumerator DeleteObject(float f, GameObject obj)

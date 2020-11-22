@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
 {
+    public Drawing draw;
     public GameObject StartButtons;
     public GameObject OptionButtons;
     public GameObject GameStartButtons;
@@ -13,10 +14,15 @@ public class MenuManager : MonoBehaviour
     public Animator camAnim;
     public GameObject CharacterSelectButtons;
     public Image[] CharacterButtons;
+    public Image[] ColorButtons;
     public GameObject[] colorCharacters;
     private bool Player1Selected = false;
     private Image player1SelectedImage;
     private bool Player2Selected = false;
+    private bool Player1SelectedColor = false;
+    private Image Player1ColorSelected;
+    private Image Player2ColorSelected;
+    private bool Player2SelectedColor = false;
     private Image player2SelectedImage;
     private enum Colors
     {
@@ -88,6 +94,7 @@ public class MenuManager : MonoBehaviour
         button.color = baseColor;
         ClickSound.Play();
         camAnim.SetTrigger("backgroundslide");
+        draw.swapCanDraw();
     }
     public void StartLocal(Text button)
     {
@@ -97,6 +104,7 @@ public class MenuManager : MonoBehaviour
         button.color = baseColor;
         ClickSound.Play();
         camAnim.SetTrigger("backgroundslide");
+        draw.swapCanDraw();
     }
     public void LeaveCharacterSelect(Text button)
     {
@@ -105,6 +113,7 @@ public class MenuManager : MonoBehaviour
         camAnim.SetTrigger("reverseslide");
         GameStartButtons.SetActive(true);
         CharacterSelectButtons.SetActive(false);
+        draw.swapCanDraw();
     }
     
     public void setPlayer1(GameObject shape)
@@ -266,46 +275,114 @@ public class MenuManager : MonoBehaviour
     }
     public void Black(int player)
     {
-        if(player == 1)
+        ClickSound.Play();
+        if (player == 1)
         {
+            if (Player1SelectedColor)
+            {
+                Player1ColorSelected.color = Color.clear;
+                Player1SelectedColor = false;
+            }
             player1Color = Colors.black;
+            ColorButtons[3].color = Color.yellow;
+            Player1ColorSelected = ColorButtons[3];
+            Player1SelectedColor = true;
         }
-        else
+        if(player == 0)
         {
+            if (Player2SelectedColor)
+            {
+                Player2ColorSelected.color = Color.clear;
+                Player2SelectedColor = false;
+            }
             player2Color = Colors.black;
+            ColorButtons[7].color = Color.yellow;
+            Player2SelectedColor = true;
+            Player2ColorSelected = ColorButtons[7];
         }
     }
     public void purple(int player)
     {
+        ClickSound.Play();
         if (player == 1)
         {
+            if (Player1SelectedColor)
+            {
+                Player1ColorSelected.color = Color.clear;
+                Player1SelectedColor = false;
+            }
             player1Color = Colors.purple;
+            ColorButtons[2].color = Color.yellow;
+            Player1ColorSelected = ColorButtons[2];
+            Player1SelectedColor = true;
         }
-        else
+        if (player == 0)
         {
+            if (Player2SelectedColor)
+            {
+                Player2ColorSelected.color = Color.clear;
+                Player2SelectedColor = false;
+            }
             player2Color = Colors.purple;
+            ColorButtons[6].color = Color.yellow;
+            Player2SelectedColor = true;
+            Player2ColorSelected = ColorButtons[6];
         }
     }
     public void red(int player)
     {
+        ClickSound.Play();
         if (player == 1)
         {
+            if (Player1SelectedColor)
+            {
+                Player1ColorSelected.color = Color.clear;
+                Player1SelectedColor = false;
+            }
             player1Color = Colors.red;
+            ColorButtons[1].color = Color.yellow;
+            Player1ColorSelected = ColorButtons[1];
+            Player1SelectedColor = true;
         }
-        else
+        if (player == 0)
         {
+            if (Player2SelectedColor)
+            {
+                Player2ColorSelected.color = Color.clear;
+                Player2SelectedColor = false;
+            }
             player2Color = Colors.red;
+            ColorButtons[5].color = Color.yellow;
+            Player2SelectedColor = true;
+            Player2ColorSelected = ColorButtons[5];
         }
     }
     public void blue(int player)
     {
+        ClickSound.Play();
         if (player == 1)
         {
+            if (Player1SelectedColor)
+            {
+                Player1ColorSelected.color = Color.clear;
+                Player1SelectedColor = false;
+            }
             player1Color = Colors.blue;
+            ColorButtons[0].color = Color.yellow;
+            Player1ColorSelected = ColorButtons[0];
+            Player1SelectedColor = true;
         }
-        else
+        if (player == 0)
         {
+            if (Player2SelectedColor)
+            {
+                Player2ColorSelected.color = Color.clear;
+                Player2SelectedColor = false;
+            }
             player2Color = Colors.blue;
+            ColorButtons[4].color = Color.yellow;
+            Player2SelectedColor = true;
+            Player2ColorSelected = ColorButtons[4];
         }
     }
 
