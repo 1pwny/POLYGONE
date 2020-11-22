@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ArenaPlayer : MonoBehaviour
 {
+    public ArenaManager manager;
+
     public bool isLocal;
     public Vector2 startingPos;
     public string hinput, vinput;
@@ -16,10 +18,16 @@ public class ArenaPlayer : MonoBehaviour
     public Attacks attack;
     public Defenses defense;
 
+
+    public int atMax, deMax;
+    private int attTimer, defTimer;
+
     // Start is called before the first frame update
     void Start()
     {
         transform.position = new Vector3(startingPos.x, startingPos.y, 0);
+        attTimer = 30;
+        defTimer = 30;
     }
 
     // Update is called once per frame
@@ -52,9 +60,12 @@ public class ArenaPlayer : MonoBehaviour
 
     void useAbilities()
     {
-        if(Input.GetKeyDown(attackKey))
+        attTimer -= (attTimer < 1) ? 0 : 1;
+        defTimer -= (defTimer < 1) ? 0 : 1;
+
+        if (Input.GetKeyDown(attackKey) && attTimer == 0)
         {
-            switch(attack)
+            switch (attack)
             {
                 case Attacks.Bomb:
                     Bomb();
@@ -71,10 +82,12 @@ public class ArenaPlayer : MonoBehaviour
                 default:
                     break;
             }
+
+            attTimer = atMax;
         }
 
-        if(Input.GetKeyDown(defendKey))
-            switch(defense)
+        if (Input.GetKeyDown(defendKey) && defTimer == 0) { 
+            switch (defense)
             {
                 case Defenses.Phaseout:
                     PhaseOut();
@@ -91,6 +104,9 @@ public class ArenaPlayer : MonoBehaviour
                 default:
                     break;
             }
+
+            defTimer = deMax;
+        }
     }
 
 
@@ -132,21 +148,32 @@ public class ArenaPlayer : MonoBehaviour
     //Circle moveset
     void Bomb()
     {
+        GameObject bombToBe = Instantiate(manager.bombPref, transform.position, Quaternion.identity);
 
+        bombToBe.GetComponent<Bomb>().initPref(this, manager);
     }
     void PhaseOut()
     {
+        gameObject.SetActive(false);
 
+        GameObject circleToBe = Instantiate(manager.phasePref, transform.position, transform.rotation);
+
+        circleToBe.GetComponent<Rigidbody2D>().velocity = GetComponent<Rigidbody2D>().velocity;
+        circleToBe.GetComponent<PhasedOut>().initPrefs(this.gameObject, hinput, vinput);
     }
 
     //Square moveset
     void Bullet()
     {
+        GameObject bulletToBe = Instantiate(manager.bulletPref, transform.position + 1.1f * transform.up, transform.rotation);
 
+        bulletToBe.GetComponent<Bullet>().initPrefs(this, manager);
     }
     void Wall()
     {
+        GameObject wallToBe = Instantiate(manager.wallPref, transform.position, transform.rotation);
 
+        wallToBe.GetComponent<Shield>().initPrefs(this, manager);
     }
 
     //Triangle moveset
