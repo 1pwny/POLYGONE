@@ -11,8 +11,16 @@ public class TripManager : MonoBehaviour
     public Text Timer;
     public float time = 60;
     public ObstacleGeneration ObsGen;
-
+    public GameObject ContinueButton;
     private GameManager gameManager;
+    private Color baseColor = Color.black;
+    private Color hoverColor = Color.red;
+    public GameObject middleBoundary;
+    public GameObject rightBoundary;
+    public GameObject leftBoundary;
+    public GameObject centerBoundary;
+    public ScrollingBG[] backgrounds;
+    public bool endedGame = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -39,13 +47,35 @@ public class TripManager : MonoBehaviour
         }
         else
         {
-            ObsGen.gameActive = false;
-            Timer.text = "0";
-            gameManager.setPlayer1Money(player1.GetComponent<TripPlayer>().getScore());
-            gameManager.setPlayer2Money(player2.GetComponent<TripPlayer>().getScore());
-            SceneManager.LoadScene("Arena");
+            if (!endedGame)
+            {
+                ObsGen.gameActive = false;
+                Timer.text = "Shop";
+                gameManager.setPlayer1Money(player1.GetComponent<TripPlayer>().getScore());
+                gameManager.setPlayer2Money(player2.GetComponent<TripPlayer>().getScore());
+                ContinueButton.SetActive(true);
+                middleBoundary.gameObject.transform.Translate(4.7f, 0f, 0f);
+                leftBoundary.transform.localScale += new Vector3(0f, 11f, 0f);
+                rightBoundary.transform.localScale += new Vector3(0f, 11f, 0f);
+                centerBoundary.transform.localScale += new Vector3(0f, 11f, 0f);
+                backgrounds[0].gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0f, 0f);
+                backgrounds[1].gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0f, 0f);
+                ObsGen.MakePowerUps();
+                endedGame = true;
+            }
+            
         }
         
+    }
+
+    public void ButtonHover(Text button)
+    {
+        button.color = hoverColor;
+    }
+
+    public void ButtonHoverExit(Text button)
+    {
+        button.color = baseColor;
     }
 
     void localSetup()
@@ -68,6 +98,11 @@ public class TripManager : MonoBehaviour
     {
         Debug.Log("nothing here lmao");
         localSetup();
+    }
+
+    public void ContinueToArena()
+    {
+        SceneManager.LoadScene("Arena");
     }
 
 }

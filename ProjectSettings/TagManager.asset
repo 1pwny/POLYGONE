@@ -5,6 +5,13 @@ TagManager:
   serializedVersion: 2
   tags:
   - Obstacle
+  - Star
+  - Bounds
+  - 10
+  - 5
+  - 15
+  - Player1
+  - Player2
   layers:
   - Default
   - TransparentFX
@@ -15,7 +22,7 @@ TagManager:
   - 
   - 
   - playerbounds
-  - 
+  - powerUp
   - 
   - 
   - 

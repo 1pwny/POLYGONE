@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
     private GameObject Player2;
     private int Player1Money;
     private int Player2Money;
+    public List<string> Player1Ups;
+    public List<string> Player2Ups;
 
     // Start is called before the first frame update
     void Start()
@@ -52,6 +54,17 @@ public class GameManager : MonoBehaviour
     public GameObject getPlayer2()
     {
         return Player2;
+    }
+
+    public void AddPlayer1Up(string up)
+    {
+        Player1Ups.Add(up);
+        print(up);
+    }
+    public void AddPlayer2Up(string up)
+    {
+        Player2Ups.Add(up);
+        print(up);
     }
 
     public void setPlayer1Money(int amount)

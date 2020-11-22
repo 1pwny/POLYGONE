@@ -14,6 +14,8 @@ public class ObstacleGeneration : MonoBehaviour
     public float radius;
     public float WaitPeriod;
     public bool gameActive = true;
+    public GameObject[] PowerUps;
+    public Transform[] PowerUpLocations;
     // Start is called before the first frame update
     void Start()
     {
@@ -40,7 +42,11 @@ public class ObstacleGeneration : MonoBehaviour
     {
         yield return new WaitForSeconds(f);
         var location = new Vector2((Random.value - 0.5f) * radius, ((Random.value - 0.5f) * radius + 10f));
-        obj.transform.position = location;
+        if (gameActive)
+        {
+            obj.transform.position = location;
+            obj.gameObject.GetComponent<BoxCollider2D>().enabled = true;
+        }
         if (gameActive)
         {
             StartCoroutine(MoveObject(WaitPeriod, obj));
@@ -56,13 +62,36 @@ public class ObstacleGeneration : MonoBehaviour
         while (currCountStar < CountStar)
         {
             var location = new Vector2((Random.value - 0.5f) * radius, ((Random.value - 0.5f) * radius + 10f));
-            var newObstacle = Instantiate(obj, location, Quaternion.identity);
+            var newStar = Instantiate(obj, location, Quaternion.identity);
             currCountStar++;
+            newStar.transform.parent = Parent.transform;
+
         }
         if (gameActive)
         {
             currCountStar = 0;
             StartCoroutine(CreateStars(WaitPeriod, obj));
+        }
+    }
+    public void MakePowerUps()
+    {
+        for(int i = 0; i< Parent.transform.childCount; i++)
+        {
+            Destroy(Parent.transform.GetChild(i).gameObject);
+        }
+        for (int p = 0; p < PowerUpLocations.Length; p++)
+        {
+            var location = PowerUpLocations[p].position;
+            var newObstacle = Instantiate(PowerUps[Random.Range(0, PowerUps.Length)], location, Quaternion.identity);
+        }
+        StartCoroutine(destroystuff(0.5f));
+    }
+    IEnumerator destroystuff(float f)
+    {
+        yield return new WaitForSeconds(f);
+        for (int i = 0; i < Parent.transform.childCount; i++)
+        {
+            Destroy(Parent.transform.GetChild(i).gameObject);
         }
     }
 }

@@ -45,7 +45,7 @@ public class MenuManager : MonoBehaviour
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         player1Color = Colors.black;
         player2Color = Colors.black;
-        var rand = Random.Range(0, Openings.Length-1);
+        var rand = Random.Range(0, Openings.Length);
         print(rand);
         Opening.clip = Openings[rand];
         Opening.Play();
