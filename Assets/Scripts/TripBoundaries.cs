@@ -30,7 +30,7 @@ public class TripBoundaries : MonoBehaviour
     {
         //Debug.Log("nothing");
 
-        if(collision.gameObject.tag.Equals("Player"))
+        if(collision.gameObject.tag.Equals("Player1")|| collision.gameObject.tag.Equals("Player2"))
         { 
             //if (sr.color.a > 0)
                 //return;
