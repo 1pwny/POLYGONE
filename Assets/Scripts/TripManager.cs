@@ -2,11 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class TripManager : MonoBehaviour
 {
     public GameObject player1;
     public GameObject player2;
+    public Text Timer;
+    public float time = 60;
+    public ObstacleGeneration ObsGen;
 
     private GameManager gameManager;
     // Start is called before the first frame update
@@ -22,6 +26,26 @@ public class TripManager : MonoBehaviour
         {
             onlineSetup();
         }
+        Timer.text = time.ToString();
+    }
+
+    private void Update()
+    {
+        time -= Time.deltaTime;
+        if(time > 0f)
+        {
+            string timeString = string.Format("{0:N0}", time);
+            Timer.text = timeString;
+        }
+        else
+        {
+            ObsGen.gameActive = false;
+            Timer.text = "0";
+            gameManager.setPlayer1Money(player1.GetComponent<TripPlayer>().getScore());
+            gameManager.setPlayer2Money(player2.GetComponent<TripPlayer>().getScore());
+            SceneManager.LoadScene("Arena");
+        }
+        
     }
 
     void localSetup()

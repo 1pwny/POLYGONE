@@ -24,6 +24,8 @@ public class MenuManager : MonoBehaviour
     private Image Player2ColorSelected;
     private bool Player2SelectedColor = false;
     private Image player2SelectedImage;
+    public AudioClip[] Openings;
+    public AudioSource Opening;
     private enum Colors
     {
         blue, red, purple, black
@@ -43,6 +45,10 @@ public class MenuManager : MonoBehaviour
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         player1Color = Colors.black;
         player2Color = Colors.black;
+        var rand = Random.Range(0, Openings.Length-1);
+        print(rand);
+        Opening.clip = Openings[rand];
+        Opening.Play();
     }
 
     #region Buttons
