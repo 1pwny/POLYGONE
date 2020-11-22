@@ -153,13 +153,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isLocal: 1
-  startingPos: {x: 0, y: 0}
+  startingPos: {x: -4, y: 0}
   hinput: Horizontal
   vinput: Vertical
   attackKey: 0
   defendKey: 0
-  attackType: 
-  defendType: 
+  attack: 0
+  defense: 0
 --- !u!212 &610793110
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -216,7 +216,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 610793108}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -4, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -854,13 +854,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isLocal: 1
-  startingPos: {x: 0, y: 0}
-  hinput: Horizontal
-  vinput: Vertical
+  startingPos: {x: 4, y: 0}
+  hinput: Horizontal 2
+  vinput: Vertical 2
   attackKey: 0
   defendKey: 0
-  attackType: 
-  defendType: 
+  attack: 0
+  defense: 0
 --- !u!212 &1748179583
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -917,7 +917,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1748179579}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 4, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

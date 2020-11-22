@@ -8,8 +8,13 @@ public class ArenaPlayer : MonoBehaviour
     public Vector2 startingPos;
     public string hinput, vinput;
 
+    public enum Attacks { Bomb, Bullet, Charge }
+    public enum Defenses { Phaseout, Wall, Heal }
+
     public KeyCode attackKey, defendKey;
-    public string attackType, defendType;
+
+    public Attacks attack;
+    public Defenses defense;
 
     // Start is called before the first frame update
     void Start()
@@ -49,17 +54,17 @@ public class ArenaPlayer : MonoBehaviour
     {
         if(Input.GetKeyDown(attackKey))
         {
-            switch(attackType)
+            switch(attack)
             {
-                case "bomb":
+                case Attacks.Bomb:
                     Bomb();
                     break;
 
-                case "bullet":
+                case Attacks.Bullet:
                     Bullet();
                     break;
 
-                case "charge":
+                case Attacks.Charge:
                     Charge();
                     break;
 
@@ -69,17 +74,17 @@ public class ArenaPlayer : MonoBehaviour
         }
 
         if(Input.GetKeyDown(defendKey))
-            switch(defendType)
+            switch(defense)
             {
-                case "phaseout":
+                case Defenses.Phaseout:
                     PhaseOut();
                     break;
 
-                case "wall":
+                case Defenses.Wall:
                     Wall();
                     break;
 
-                case "heal":
+                case Defenses.Heal:
                     Heal();
                     break;
 
@@ -88,6 +93,41 @@ public class ArenaPlayer : MonoBehaviour
             }
     }
 
+
+    void initAttackDefend(string shape)
+    {
+        if(transform.position.x > 0)
+        {
+            //assume player 2
+            attackKey = KeyCode.RightControl;
+            defendKey = KeyCode.Keypad0;
+        }
+        else
+        {
+            //asume player 1
+            attackKey = KeyCode.LeftShift;
+            defendKey = KeyCode.V;
+        }
+
+        switch(shape)
+        {
+            case "circle":
+                attack = Attacks.Bomb;
+                defense = Defenses.Phaseout;
+                break;
+            case "square":
+                attack = Attacks.Bullet;
+                defense = Defenses.Wall;
+                break;
+            case "triangle":
+                attack = Attacks.Charge;
+                defense = Defenses.Heal;
+                break;
+
+            default:
+                break;
+        }
+    }
 
     //Circle moveset
     void Bomb()
