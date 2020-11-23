@@ -988,6 +988,8 @@ MonoBehaviour:
   p2: {fileID: 1748179582}
   hp1: {fileID: 375812505}
   hp2: {fileID: 1490214181}
+  player1: {fileID: 610793108}
+  player2: {fileID: 1748179579}
   hpmax: 100
   bombPref: {fileID: 7616711406891801966, guid: 311dacf73e42e8543a3c936eb40d8283,
     type: 3}

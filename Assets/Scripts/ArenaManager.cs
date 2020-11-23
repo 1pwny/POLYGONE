@@ -6,6 +6,8 @@ public class ArenaManager : MonoBehaviour
 {
     public ArenaPlayer p1, p2;
     public GameObject hp1, hp2;
+    public GameObject player1;
+    public GameObject player2;
 
     private int p1HP, p2HP;
     public float hpmax = 100.0f;
@@ -14,11 +16,21 @@ public class ArenaManager : MonoBehaviour
     public GameObject bombPref, phasePref, bulletPref, wallPref, chargePref, healPref;
 
     private int p1_invincible, p2_invincible;
+    private GameManager gameManager;
 
     private void Start()
     {
         p1HP = 100;
         p2HP = 100;
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        Sprite newSprite = gameManager.getPlayer1().GetComponent<SpriteRenderer>().sprite;
+        player1.GetComponent<SpriteRenderer>().sprite = newSprite;
+        Sprite newSprite2 = gameManager.getPlayer2().GetComponent<SpriteRenderer>().sprite;
+        player2.GetComponent<SpriteRenderer>().sprite = newSprite2;
+        p1.initAttackDefend(gameManager.getPlayer1().name.Substring(0,1));
+        print(gameManager.getPlayer1().name.Substring(0, 1));
+        p2.initAttackDefend(gameManager.getPlayer2().name.Substring(0, 1));
+        print(gameManager.getPlayer2().name.Substring(0, 1));
     }
 
     void Update()

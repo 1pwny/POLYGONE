@@ -7,6 +7,7 @@ public class Bullet : Deflectable
     ArenaManager manager;
 
     int damage;
+    public int velocity = 10;
 
     //bounces till it hits max or hits a player
     public void initPrefs(ArenaPlayer c, ArenaManager m, int damage = 5, int mB = 2)
@@ -17,7 +18,7 @@ public class Bullet : Deflectable
         bounces = 0;
         maxBounces = mB;
 
-        gameObject.GetComponent<Rigidbody2D>().velocity = transform.up * 10;
+        gameObject.GetComponent<Rigidbody2D>().velocity = transform.up * velocity;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

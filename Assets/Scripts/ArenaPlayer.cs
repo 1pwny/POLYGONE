@@ -110,7 +110,7 @@ public class ArenaPlayer : MonoBehaviour
     }
 
 
-    void initAttackDefend(string shape)
+    public void initAttackDefend(string shape)
     {
         if(transform.position.x > 0)
         {
@@ -122,20 +122,20 @@ public class ArenaPlayer : MonoBehaviour
         {
             //asume player 1
             attackKey = KeyCode.LeftShift;
-            defendKey = KeyCode.V;
+            defendKey = KeyCode.Space;
         }
 
         switch(shape)
         {
-            case "circle":
+            case "C":
                 attack = Attacks.Bomb;
                 defense = Defenses.Phaseout;
                 break;
-            case "square":
+            case "S":
                 attack = Attacks.Bullet;
                 defense = Defenses.Wall;
                 break;
-            case "triangle":
+            case "T":
                 attack = Attacks.Charge;
                 defense = Defenses.Heal;
                 break;

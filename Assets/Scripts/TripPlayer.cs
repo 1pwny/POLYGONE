@@ -20,7 +20,6 @@ public class TripPlayer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
         text = GameObject.Find("PowerUpDetail").GetComponent<Text>();
         transform.position = new Vector3(startingPos.x, startingPos.y, 0);
         sound = GetComponent<AudioSource>();
